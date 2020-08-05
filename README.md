@@ -3,5 +3,5 @@
 ## [App Release Link](https://drive.google.com/file/d/1V9noUsQyvOILAdfwQsLfyUfi3drZyCBI/view?usp=sharing)
 
 ## API Source
-Corona API: [Corona API](covid19api.com)
+Corona API: [Corona API](https://covid19api.com)
 News API: [News API](https://newsapi.org/s/indonesia-news-api)
