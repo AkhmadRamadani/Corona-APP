@@ -1,6 +1,4 @@
-# Corner
-
-A new Flutter project.
+![Poster or Screenshot](https://drive.google.com/file/d/1aryx_V0dgobD5FXwRGZ9UbpJhHuRIKcJ/view?usp=sharing)
 
 ## [App Release Link](https://drive.google.com/file/d/1V9noUsQyvOILAdfwQsLfyUfi3drZyCBI/view?usp=sharing)
 
