@@ -1,12 +1,15 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class LittleCard extends StatefulWidget {
-  LittleCard({Key key, this.type, this.label, this.jumlah, this.lebih})
-      : super(key: key);
-
   final String type, label, jumlah, lebih;
+
+  const LittleCard({Key key, this.type, this.label, this.jumlah, this.lebih}) : super(key: key);
+
+  
   @override
-  _LitteCardState createState() => _LitteCardState();
+  State<StatefulWidget> createState() => _LitteCardState();
+  
 }
 
 class _LitteCardState extends State<LittleCard> {

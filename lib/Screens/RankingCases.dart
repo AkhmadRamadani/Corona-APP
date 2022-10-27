@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/RankingCard.dart';
 import 'package:Corner/Utils/SummaryModel.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,14 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class RankingCases extends StatefulWidget {
-  RankingCases({Key key, this.ascending}) : super(key: key);
   final bool ascending;
+
+  const RankingCases({Key key,  this.ascending}) : super(key: key);
+
+  
   @override
-  RankingCasesState createState() => RankingCasesState();
+  State<StatefulWidget> createState() => RankingCasesState();
+  
 }
 
 class RankingCasesState extends State<RankingCases>
@@ -75,7 +80,7 @@ class RankingCasesState extends State<RankingCases>
                   iso2: _countryData[index].countryCode,
                   index: index,
                   jumlah: NumberFormat.currency(symbol: '')
-                      .format(_countryData[index].totalConfirmed),
+                      .format(_countryData[index].totalConfirmed), type: '',
                 ),
                 itemCount: _countryData.length,
               ),

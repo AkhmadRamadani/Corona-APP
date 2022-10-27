@@ -1,12 +1,17 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class RankingCard extends StatefulWidget {
-  RankingCard({this.type, this.iso2, this.country, this.jumlah, this.index});
   final String type, iso2, country, jumlah;
   final int index;
-  // final double jumlah;
+
+  const RankingCard(
+      {Key key, this.type, this.iso2, this.country, this.jumlah, this.index})
+      : super(key: key);
+
   @override
-  _RankingCardState createState() => _RankingCardState();
+  State<StatefulWidget> createState() => _RankingCardState();
+  // final double jumlah;
 }
 
 class _RankingCardState extends State<RankingCard> {
@@ -22,7 +27,7 @@ class _RankingCardState extends State<RankingCard> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
 
-        image: DecorationImage(
+        image: const DecorationImage(
             image: AssetImage("assets/images/bg1.png"), fit: BoxFit.cover),
         gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -30,7 +35,7 @@ class _RankingCardState extends State<RankingCard> {
             colors: widget.type == "Death"
                 ? [Colors.red, Colors.orange]
                 : widget.type == "Recovered"
-                    ? [Colors.greenAccent, Colors.green[200]]
+                    ? [Colors.greenAccent, Colors.green.shade200]
                     : [Colors.blueAccent, Colors.lightBlueAccent]),
 
         // image: Image(image: AssetImage("assets/images/bg-2.png")),
@@ -39,16 +44,16 @@ class _RankingCardState extends State<RankingCard> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
+            flex: 1,
             child: Container(
               width: double.infinity,
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 10, right: 5),
+              margin: const EdgeInsets.only(left: 10, right: 5),
               child: Text(
                 "${widget.index + 1}",
-                style: TextStyle(fontFamily: "Open Sans", fontSize: 40),
+                style: const TextStyle(fontFamily: "Open Sans", fontSize: 40),
               ),
             ),
-            flex: 1,
           ),
           Expanded(
               flex: 3,
@@ -58,35 +63,38 @@ class _RankingCardState extends State<RankingCard> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Image(
-                          image: NetworkImage("https://www.countryflags.io/" +
-                              widget.iso2 +
-                              "/flat/64.png"),
-                          width: 60,
-                          height: 50),
+                      const SizedBox(
+                        width: 60,
+                        height: 50,
+                      ),
+                      // Image(
+                      //     image: NetworkImage("https://www.countryflags.io/${widget.iso2}/flat/64.png"),
+                      //     width: 60,
+                      //     height: 50),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Text(
                             widget.country,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Open Sans"),
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Open Sans",
+                            ),
                           ),
                         ),
                       )
                     ],
                   ),
                   Text(
-                    widget.jumlah.substring(0, widget.jumlah.length - 3) +
-                        " Cases",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: "Open Sans"),
+                    "${widget.jumlah.substring(0, widget.jumlah.length - 3)} Cases",
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: "Open Sans",
+                    ),
                   ),
                   // Padding(
                   //   // padding: EdgeInsets.only(b),

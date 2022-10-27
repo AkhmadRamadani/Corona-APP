@@ -1,11 +1,16 @@
+// @dart=2.9
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CustomIndicator extends Decoration {
   @override
-  _CustomPainter createBoxPainter([VoidCallback onChanged]) {
-    return new _CustomPainter(this, onChanged);
+  BoxPainter createBoxPainter([VoidCallback onChanged]) {
+    return _CustomPainter(this, onChanged);
   }
+  // @override
+  // _CustomPainter createBoxPainter([VoidCallback onChanged]) {
+  //   return new _CustomPainter(this, onChanged);
+  // }
 }
 
 class _CustomPainter extends BoxPainter {
@@ -26,7 +31,7 @@ class _CustomPainter extends BoxPainter {
             (configuration.size.height / 6)) &
         Size(configuration.size.width / 1.2, configuration.size.height / 1.5);
     final Paint paint = Paint();
-    paint.color = Colors.grey[800];
+    paint.color = Colors.grey.shade800;
     paint.style = PaintingStyle.fill;
     canvas.drawRRect(
         RRect.fromRectAndRadius(rect, Radius.circular(15.0)), paint);

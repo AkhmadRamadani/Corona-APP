@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/BigNewsCard.dart';
 import 'package:Corner/Screens/DetailNews.dart';
 import 'package:Corner/Utils/NewsModel.dart';
@@ -9,12 +10,14 @@ import 'dart:convert';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class News extends StatefulWidget {
+  const News({Key key}) : super(key: key);
+
   @override
   _NewsState createState() => _NewsState();
 }
 
 class _NewsState extends State<News> {
-  List<Articles> _newsData = List<Articles>();
+  List<Articles> _newsData = [];
   bool _loading = true;
 
   Future getNews() async {
@@ -24,7 +27,7 @@ class _NewsState extends State<News> {
     http.Response res = await http.get(url);
     final resBody = json.decode(res.body);
     // print(resBody[0].toString());
-    print(resBody.runtimeType);
+    // print(resBody.runtimeType);
 
     NewsModel newsModel = NewsModel.fromJson(resBody);
     // List<News> data = (resBody as List).map((e) => null);
@@ -64,7 +67,7 @@ class _NewsState extends State<News> {
                 height: MediaQuery.of(context).size.width / 2,
                 child: CircularProgressIndicator())
             : ListView.builder(
-                itemBuilder: (context, index) => FlatButton(
+                itemBuilder: (context, index) => ElevatedButton(
                   onPressed: () {
                     pushNewScreen(context,
                         screen: DetailNews(
@@ -72,15 +75,18 @@ class _NewsState extends State<News> {
                           image: _newsData[index].urlToImage,
                           judul: _newsData[index].title,
                           url: _newsData[index].url,
+                          content: '',
                         ),
                         withNavBar: false);
                   },
-                  padding: EdgeInsets.all(0.0),
-                  child: BigNewsCard(
-                    imageNews: _newsData[index].urlToImage,
-                    date: _newsData[index].publishedAt.substring(0, 10),
-                    judul: _newsData[index].title,
-                    deskripsi: _newsData[index].description,
+                  child: Padding(
+                    padding: const EdgeInsets.all(0.0),
+                    child: BigNewsCard(
+                      imageNews: _newsData[index].urlToImage,
+                      date: _newsData[index].publishedAt.substring(0, 10),
+                      judul: _newsData[index].title,
+                      deskripsi: _newsData[index].description,
+                    ),
                   ),
                 ),
                 itemCount: _newsData.length,

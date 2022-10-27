@@ -1,9 +1,10 @@
+// @dart=2.9
 class NewsModel {
   String status;
   int totalResults;
   List<Articles> articles;
 
-  NewsModel({this.status, this.totalResults, this.articles});
+  NewsModel({ this.status,  this.totalResults,  this.articles});
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     var list = json['articles'] as List;
@@ -26,15 +27,16 @@ class Articles {
   String publishedAt;
   String content;
 
-  Articles(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+  Articles({
+     this.source,
+     this.author,
+     this.title,
+     this.description,
+     this.url,
+     this.urlToImage,
+     this.publishedAt,
+     this.content
+  });
 
   factory Articles.fromJson(Map<String, dynamic> json) {
     return Articles(
@@ -54,7 +56,7 @@ class Source {
   String id;
   String name;
 
-  Source({this.id, this.name});
+  Source({ this.id,  this.name});
 
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(

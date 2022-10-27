@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/newsCard.dart';
 import 'package:Corner/Screens/DetailNews.dart';
 import 'package:Corner/Screens/SelfCheck.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _StateHomePage extends State<HomePage> {
   // List newsData;
-  List<Articles> _newsData = List<Articles>();
+  List<Articles> _newsData = [];
   bool _loading = false;
 
   Future getNews() async {
@@ -115,7 +116,7 @@ class _StateHomePage extends State<HomePage> {
                                                       end: Alignment
                                                           .bottomCenter,
                                                       colors: [
-                                                        Colors.lightGreen[400],
+                                                        Colors.lightGreen.shade400,
                                                         Colors.lightBlue
                                                       ])),
                                               child: Column(
@@ -209,7 +210,7 @@ class _StateHomePage extends State<HomePage> {
                                                       end: Alignment
                                                           .bottomCenter,
                                                       colors: [
-                                                        Colors.lightGreen[400],
+                                                        Colors.lightGreen.shade400,
                                                         Colors.lightBlue
                                                       ])),
                                               child: Column(
@@ -376,7 +377,7 @@ class _StateHomePage extends State<HomePage> {
                                                     begin: Alignment.topCenter,
                                                     end: Alignment.bottomCenter,
                                                     colors: [
-                                                      Colors.lightGreen[400],
+                                                      Colors.lightGreen.shade400,
                                                       Colors.lightBlue
                                                     ])),
                                             child: Column(
@@ -676,8 +677,8 @@ class _StateHomePage extends State<HomePage> {
                                 begin: Alignment.topRight,
                                 end: Alignment.bottomLeft,
                                 colors: [
-                                  Colors.indigo[800],
-                                  Colors.indigo[200]
+                                  Colors.indigo.shade800,
+                                  Colors.indigo.shade200
                                 ]),
                             borderRadius: BorderRadius.circular(10)),
                         child: Row(
@@ -758,7 +759,7 @@ class _StateHomePage extends State<HomePage> {
                         child: SizedBox(
                           height: MediaQuery.of(context).size.width / 2,
                           child: ListView.builder(
-                            itemBuilder: (context, index) => FlatButton(
+                            itemBuilder: (context, index) => ElevatedButton(
                               onPressed: () {
                                 pushNewScreen(context,
                                     screen: DetailNews(
@@ -772,15 +773,17 @@ class _StateHomePage extends State<HomePage> {
                                     ),
                                     withNavBar: false);
                               },
-                              padding: EdgeInsets.all(0.0),
-                              child: NewsCard(
-                                index: index,
-                                imageNews: _newsData[index].urlToImage,
-                                date: _newsData[index]
-                                    .publishedAt
-                                    .substring(0, 10),
-                                judul: _newsData[index].title,
-                                deskripsi: _newsData[index].description,
+                              child: Padding(
+                                padding: const EdgeInsets.all(0.0),
+                                child: NewsCard(
+                                  index: index,
+                                  imageNews: _newsData[index].urlToImage,
+                                  date: _newsData[index]
+                                      .publishedAt
+                                      .substring(0, 10),
+                                  judul: _newsData[index].title,
+                                  deskripsi: _newsData[index].description,
+                                ),
                               ),
                             ),
                             physics: ClampingScrollPhysics(),

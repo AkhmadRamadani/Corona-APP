@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/CustomIndicator.dart';
 import 'package:Corner/Screens/Dashboard.dart';
 import 'package:Corner/Screens/DashboardNegaraku.dart';
@@ -12,7 +13,7 @@ class Tabbar extends StatefulWidget {
 }
 
 class _TabbarState extends State<Tabbar> {
-  TabController _tabController;
+   TabController _tabController;
   int indexAwal = 0;
   bool reversed = false;
 

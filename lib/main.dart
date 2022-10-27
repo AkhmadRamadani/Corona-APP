@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Screens/DetailNews.dart';
 import 'package:Corner/Screens/FAQ.dart';
 import 'package:Corner/Screens/HomePage.dart';
@@ -42,23 +43,23 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         "/": (BuildContext context) => MyHomePage(),
         "/register": (BuildContext context) => RegisterController(),
-        "/detailNews": (BuildContext context) => DetailNews(),
+        "/detailNews": (BuildContext context) => const DetailNews(),
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
 
+  const MyHomePage({Key key, this.title}) : super(key: key);
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<StatefulWidget> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  PersistentTabController _controller;
+ PersistentTabController _controller;
 
   @override
   void initState() {

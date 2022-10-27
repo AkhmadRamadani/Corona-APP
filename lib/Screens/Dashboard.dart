@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/littlecard.dart';
 import 'package:Corner/Components/text_input.dart';
 import 'package:Corner/Utils/CountryData.dart';
@@ -24,19 +25,19 @@ class _DashboardState extends State<Dashboard> {
   String url = "https://covid19.mathdro.id/api";
   List<CountryList> _countryList = [];
   List<CountryList> _searchResult = [];
-  String _searchText = "";
+  final String _searchText = "";
   CountryList _selectedCountry;
-  List<GlobalTotal> _globalTotal = List<GlobalTotal>();
-  List<DailyModel> _dailyCasesData = List<DailyModel>();
+  List<GlobalTotal> _globalTotal = [];
+  final List<DailyModel> _dailyCasesData = [];
   List<TimeSeriesCases> _chartTimeSeriesDataCases = [];
   List<TimeSeriesCases> _chartTimeSeriesDataRecovered = [];
   List<TimeSeriesCases> _chartTimeSeriesDataDeaths = [];
   List data = [];
   RentangWaktu selectedWaktu;
   List<RentangWaktu> rentangWaktu = <RentangWaktu>[
-    RentangWaktu(7, 'Grafik 1 Minggu Terakhir'),
-    RentangWaktu(30, 'Grafik 1 Bulan Terakhir'),
-    RentangWaktu(365, 'Grafik 1 Tahun Terakhir'),
+    const RentangWaktu(7, 'Grafik 1 Minggu Terakhir'),
+    const RentangWaktu(30, 'Grafik 1 Bulan Terakhir'),
+    const RentangWaktu(365, 'Grafik 1 Tahun Terakhir'),
   ];
   Global globalSummary;
   int _tambahanCases = 0, _tambahanRecovered = 0, _tambahanDeath = 0;
@@ -115,20 +116,20 @@ class _DashboardState extends State<Dashboard> {
   }
 
   _getUserSelectedCountry() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String simpananData = preferences.getString("userSelectedCountry");
-    if (simpananData != null) {
-      var newData = json.decode(preferences.getString("userSelectedCountry"));
-      CountryList countryList = CountryList.fromJson(newData);
-      setState(() {
-        _selectedCountry = countryList;
-      });
-      print("countryDataa = " + newData.toString());
-    } else {
-      setState(() {
-        _selectedCountry = _countryList[0];
-      });
-    }
+    // SharedPreferences preferences = await SharedPreferences.getInstance();
+    // String simpananData = preferences.getString("userSelectedCountry");
+    // if (simpananData != null) {
+    //   var newData = json.decode(preferences.getString("userSelectedCountry"));
+    //   CountryList countryList = CountryList.fromJson(newData);
+    //   setState(() {
+    //     _selectedCountry = countryList;
+    //   });
+    //   print("countryDataa = " + newData.toString());
+    // } else {
+    setState(() {
+      _selectedCountry = _countryList[0];
+    });
+    // }
   }
 
   Future getCountryList() async {
@@ -149,12 +150,16 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future getNationData(String kodeNegara) async {
-    String url = "https://api.covid19api.com/total/country/" + kodeNegara;
+    String url = "https://api.covid19api.com/total/country/$kodeNegara";
     http.Response response = await http.get(url);
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       final data = jsonDecode(response.body);
       List<dynamic> countryData =
           data.map((item) => CountryData.fromJson(item)).toList();
+
+      print("country data coming up");
+      print(kodeNegara);
+
       if (countryData[countryData.length - 1].confirmed != null) {
         setState(() {
           _countryData = countryData.length > 1
@@ -195,7 +200,7 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       _searchResult = [];
     });
-    userController.sink.add(null);
+    // userController.sink.add(null);
 
     print('total users = ${_countryList.length}');
     if (value.isEmpty) {
@@ -294,13 +299,14 @@ class _DashboardState extends State<Dashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
-                        child: Image(
-                            image: NetworkImage("https://www.countryflags.io/" +
-                                snapshot[index].iso2 +
-                                "/flat/64.png"),
-                            width: 50,
-                            height: 40),
                         flex: 1,
+                        child: Text(""),
+                        // child: Image(
+                        //     image: NetworkImage("https://www.countryflags.io/" +
+                        //         snapshot[index].iso2 +
+                        //         "/flat/64.png"),
+                        //     width: 50,
+                        //     height: 40),
                       ),
                       Expanded(
                         child: Text(
@@ -440,11 +446,13 @@ class _DashboardState extends State<Dashboard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           LittleCard(
-                              label: "Kasus",
-                              jumlah: _tambahanCases == 0
-                                  ? "$_tambahanCases"
-                                  : currencer(_countryData.confirmed),
-                              lebih: _tambahanCases.toString()),
+                            label: "Kasus",
+                            jumlah: _tambahanCases == 0
+                                ? "$_tambahanCases"
+                                : currencer(_countryData.confirmed),
+                            lebih: _tambahanCases.toString(),
+                            type: '',
+                          ),
                           LittleCard(
                               label: "Sembuh",
                               lebih: _tambahanRecovered.toString(),
@@ -462,7 +470,7 @@ class _DashboardState extends State<Dashboard> {
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(top: 0),
                       child: Text("Dunia",
                           style: TextStyle(
@@ -479,6 +487,7 @@ class _DashboardState extends State<Dashboard> {
                             label: "Kasus",
                             jumlah: currencer(globalSummary.totalConfirmed),
                             lebih: globalSummary.newConfirmed.toString(),
+                            type: '',
                           ),
                           LittleCard(
                               label: "Sembuh",
@@ -777,7 +786,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   double roundDouble(double value, int places) {
-    double mod = pow(10.0, places);
+    num mod = pow(10.0, places);
     return ((value * mod).round().toDouble() / mod);
   }
 

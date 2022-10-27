@@ -1,11 +1,12 @@
+// @dart=2.9
 class GlobalTotal {
   GlobalTotal({
-    this.newConfirmed,
-    this.totalConfirmed,
-    this.newDeaths,
-    this.totalDeaths,
-    this.newRecovered,
-    this.totalRecovered,
+     this.newConfirmed,
+     this.totalConfirmed,
+     this.newDeaths,
+     this.totalDeaths,
+     this.newRecovered,
+     this.totalRecovered,
   });
 
   int newConfirmed;

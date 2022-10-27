@@ -1,17 +1,17 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class ButtonLogin extends StatefulWidget {
-
-  ButtonLogin({Key key,@required this.onPress, this.label}) : super(key: key);
-
   final Function onPress;
   final String label;
+
+  const ButtonLogin({Key key, this.onPress, this.label}) : super(key: key);
+
   @override
-  _ButtonLoginState createState() => _ButtonLoginState();
+  State<StatefulWidget> createState() => _ButtonLoginState();
 }
 
 class _ButtonLoginState extends State<ButtonLogin> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,26 +32,22 @@ class _ButtonLoginState extends State<ButtonLogin> {
           //     ),
           //   ),
           // ],
-          border: Border.all(
-            color: Colors.black,
-            width: 1
-          ),
+          border: Border.all(color: Colors.black, width: 1),
           color: Color(0xfffffff),
           borderRadius: BorderRadius.circular(25),
         ),
-        child: FlatButton(
-          onPressed: widget.onPress,
+        child: ElevatedButton(
+          onPressed: () => widget.onPress,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 widget.label,
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: "Open Sans"
-                ),
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Open Sans"),
               ),
             ],
           ),

@@ -1,12 +1,13 @@
+// @dart=2.9
 import 'dart:convert';
 
 String countryListToJson(data) => json.encode(data.toJson());
 
 class CountryList {
   CountryList({
-    this.country,
-    this.slug,
-    this.iso2,
+     this.country,
+     this.slug,
+     this.iso2,
   });
 
   String country;

@@ -1,3 +1,4 @@
+// @dart=2.9
 class AppConstants {
   static const Soal_1 = "Apa itu Virus Korona?";
   static const Jawaban_1 =

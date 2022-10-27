@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/littlecard.dart';
 import 'package:Corner/Utils/CountryData.dart';
 import 'package:Corner/Utils/CountryList.dart';
@@ -29,9 +30,9 @@ class _DashboardNegarakuState extends State<DashboardNegaraku>
   String url = "https://covid19.mathdro.id/api";
   int _tambahanCases = 0, _tambahanRecovered = 0, _tambahanDeath = 0;
   List<CountryList> _countryList = [];
-  CountryList _selectedCountry;
-  CountryData _countryData;
-  List<DailyModel> _dailyCasesData = List<DailyModel>();
+   CountryList _selectedCountry;
+   CountryData _countryData;
+  List<DailyModel> _dailyCasesData = [];
   List<TimeSeriesCases> _chartTimeSeriesData = [];
   bool _loading = true;
 
