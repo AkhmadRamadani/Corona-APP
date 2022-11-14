@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:Corner/Components/newsCard.dart';
 import 'package:Corner/Screens/DetailNews.dart';
+import 'package:Corner/Screens/ProvinceStatus.dart';
 import 'package:Corner/Screens/SelfCheck.dart';
 import 'package:Corner/Utils/NewsModel.dart';
 import 'package:Corner/Utils/String.dart';
@@ -49,7 +50,7 @@ class _StateHomePage extends State<HomePage> {
   }
 
   Future _refreshData() async {
-    await this.getNews();
+    await getNews();
   }
 
   @override
@@ -67,7 +68,7 @@ class _StateHomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Beranda"),
+          title: const Text("Beranda"),
         ),
         body: RefreshIndicator(
           onRefresh: _refreshData,
@@ -75,18 +76,19 @@ class _StateHomePage extends State<HomePage> {
             // padding: EdgeInsets.only(right: 15, left: 15),
             child: _loading == true
                 ? Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     alignment: Alignment.bottomCenter,
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.width / 2,
-                    child: CircularProgressIndicator())
+                    child: const CircularProgressIndicator())
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: 15, right: 15, left: 15),
+                        padding:
+                            const EdgeInsets.only(top: 15, right: 15, left: 15),
                         child: Text(greeting(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Roboto")),
@@ -97,12 +99,13 @@ class _StateHomePage extends State<HomePage> {
                               context: context,
                               builder: (BuildContext context) => Dialog(
                                     backgroundColor: Colors.transparent,
-                                    insetPadding: EdgeInsets.symmetric(
+                                    insetPadding: const EdgeInsets.symmetric(
                                         horizontal: 20.0, vertical: 25.0),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Container(
+                                    elevation: 0.0,
+                                    child: SizedBox(
                                       child: PageView(
                                         controller: pageController,
                                         children: <Widget>[
@@ -116,7 +119,8 @@ class _StateHomePage extends State<HomePage> {
                                                       end: Alignment
                                                           .bottomCenter,
                                                       colors: [
-                                                        Colors.lightGreen.shade400,
+                                                        Colors.lightGreen
+                                                            .shade400,
                                                         Colors.lightBlue
                                                       ])),
                                               child: Column(
@@ -124,18 +128,19 @@ class _StateHomePage extends State<HomePage> {
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 15,
-                                                        bottom: 5,
-                                                        left: 15,
-                                                        right: 15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15,
+                                                            bottom: 5,
+                                                            left: 15,
+                                                            right: 15),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
                                                         GestureDetector(
-                                                          child: Icon(
+                                                          child: const Icon(
                                                               Icons.close,
                                                               size: 36,
                                                               color:
@@ -210,7 +215,8 @@ class _StateHomePage extends State<HomePage> {
                                                       end: Alignment
                                                           .bottomCenter,
                                                       colors: [
-                                                        Colors.lightGreen.shade400,
+                                                        Colors.lightGreen
+                                                            .shade400,
                                                         Colors.lightBlue
                                                       ])),
                                               child: Column(
@@ -377,7 +383,8 @@ class _StateHomePage extends State<HomePage> {
                                                     begin: Alignment.topCenter,
                                                     end: Alignment.bottomCenter,
                                                     colors: [
-                                                      Colors.lightGreen.shade400,
+                                                      Colors
+                                                          .lightGreen.shade400,
                                                       Colors.lightBlue
                                                     ])),
                                             child: Column(
@@ -530,43 +537,100 @@ class _StateHomePage extends State<HomePage> {
                                         ],
                                       ),
                                     ),
-                                    elevation: 0.0,
                                   ));
                         },
                         child: Container(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                               top: 15, bottom: 15, right: 15, left: 15),
                           height: 150,
-                          padding:
-                              EdgeInsets.only(top: 50, right: 15, left: 15),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            image: DecorationImage(
+                            image: const DecorationImage(
                                 image:
                                     AssetImage("assets/images/Untitled-1.png"),
+                                opacity: 0.5,
                                 fit: BoxFit.cover),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 begin: Alignment.topRight,
                                 end: Alignment.bottomLeft,
                                 colors: [Colors.grey, Colors.blueAccent]),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Apa itu COVID-19?",
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Open Sans"),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              width: double.infinity,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const <Widget>[
+                                  Text(
+                                    "Apa itu COVID-19?",
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Open Sans"),
+                                  ),
+                                  Text(
+                                    "Tekan untuk mempelajari tentang Covid-19 secara singkat",
+                                    style: TextStyle(
+                                        fontSize: 16, fontFamily: "Open Sans"),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Tekan untuk mempelajari tentang Covid-19 secara singkat",
-                                style: TextStyle(
-                                    fontSize: 16, fontFamily: "Open Sans"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProvinceStatus())),
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                              bottom: 15, right: 15, left: 15),
+                          height: 150,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage("assets/images/bg2.png"),
+                                opacity: 0.5,
+                                fit: BoxFit.cover),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [Colors.orange, Colors.grey],
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              width: double.infinity,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const <Widget>[
+                                  Text(
+                                    "Kasus Covid-19 Indonesia",
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Open Sans"),
+                                  ),
+                                  Text(
+                                    "Informasi terkait covid-19 tiap provinsi",
+                                    style: TextStyle(
+                                        fontSize: 16, fontFamily: "Open Sans"),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -694,13 +758,14 @@ class _StateHomePage extends State<HomePage> {
                               flex: 1,
                             ),
                             Expanded(
+                              flex: 2,
                               child: Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.only(right: 10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    Text(
+                                    const Text(
                                       "Lakukan pemeriksaan mandiri",
                                       style: TextStyle(
                                         fontFamily: "Open Sans",
@@ -708,7 +773,7 @@ class _StateHomePage extends State<HomePage> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       "Ikuti perintah dan jawab pertanyaannya untuk melakukan test mandiri",
                                       style: TextStyle(
                                         fontFamily: "Open Sans",
@@ -723,7 +788,7 @@ class _StateHomePage extends State<HomePage> {
                                         },
                                         child: Container(
                                           width: 80,
-                                          margin: EdgeInsets.symmetric(
+                                          margin: const EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 15),
                                           height: 30,
                                           alignment: Alignment.center,
@@ -735,17 +800,16 @@ class _StateHomePage extends State<HomePage> {
                                             borderRadius:
                                                 BorderRadius.circular(6),
                                           ),
-                                          child: Text("Periksa"),
+                                          child: const Text("Periksa"),
                                         )),
                                   ],
                                 ),
                               ),
-                              flex: 2,
                             )
                           ],
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding:
                             EdgeInsets.only(bottom: 15, left: 15, right: 15),
                         child: Text("Berita Harian",

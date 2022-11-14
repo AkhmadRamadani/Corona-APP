@@ -2,6 +2,7 @@
 import 'package:Corner/Screens/DetailNews.dart';
 import 'package:Corner/Screens/FAQ.dart';
 import 'package:Corner/Screens/HomePage.dart';
+import 'package:Corner/Screens/ProvinceStatus.dart';
 // import 'package:Corner/Screens/LoginController.dart';
 import 'package:Corner/Screens/RegisterController.dart';
 import 'package:Corner/Screens/Dashboard.dart';
@@ -23,27 +24,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          // primarySwatch: Colors.blue,
-          // This makes the visual density adapt to the platform that you run
-          // the app on. For desktop platforms, the controls will be smaller and
-          // closer together (more dense) than on mobile platforms.
-          // visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData.dark(),
+      initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        "/": (BuildContext context) => MyHomePage(),
+        "/": (BuildContext context) => const MyHomePage(),
         "/register": (BuildContext context) => RegisterController(),
         "/detailNews": (BuildContext context) => const DetailNews(),
+        "/provinceStatus": (BuildContext context) => const ProvinceStatus(),
       },
     );
   }
@@ -59,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- PersistentTabController _controller;
+  PersistentTabController _controller;
 
   @override
   void initState() {

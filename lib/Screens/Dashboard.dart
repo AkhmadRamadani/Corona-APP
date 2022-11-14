@@ -116,20 +116,25 @@ class _DashboardState extends State<Dashboard> {
   }
 
   _getUserSelectedCountry() async {
-    // SharedPreferences preferences = await SharedPreferences.getInstance();
-    // String simpananData = preferences.getString("userSelectedCountry");
-    // if (simpananData != null) {
-    //   var newData = json.decode(preferences.getString("userSelectedCountry"));
-    //   CountryList countryList = CountryList.fromJson(newData);
-    //   setState(() {
-    //     _selectedCountry = countryList;
-    //   });
-    //   print("countryDataa = " + newData.toString());
-    // } else {
-    setState(() {
-      _selectedCountry = _countryList[0];
-    });
-    // }
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String simpananData = preferences.getString("userSelectedCountry");
+    if (simpananData != null) {
+      var newData = json.decode(preferences.getString("userSelectedCountry"));
+      CountryList countryList = CountryList.fromJson(newData);
+      setState(() {
+        _selectedCountry = countryList;
+      });
+      print("countryDataa = " + newData.toString());
+    } else {
+      int index =
+          _countryList.indexWhere((item) => item.country == 'Indonesia');
+      setState(() {
+        _selectedCountry = _countryList[index];
+      });
+      // setState(() {
+      //   _selectedCountry = _countryList[176];
+      // });
+    }
   }
 
   Future getCountryList() async {
@@ -157,9 +162,6 @@ class _DashboardState extends State<Dashboard> {
       List<dynamic> countryData =
           data.map((item) => CountryData.fromJson(item)).toList();
 
-      print("country data coming up");
-      print(kodeNegara);
-
       if (countryData[countryData.length - 1].confirmed != null) {
         setState(() {
           _countryData = countryData.length > 1
@@ -185,6 +187,8 @@ class _DashboardState extends State<Dashboard> {
         });
       }
       print("getNationData");
+      print('${countryData[countryData.length - 1].confirmed}');
+      print('${countryData[countryData.length - 2].confirmed}');
     } else {
       print(response.statusCode);
     }
@@ -350,98 +354,98 @@ class _DashboardState extends State<Dashboard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     GestureDetector(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) => Dialog(
-                                    insetPadding: EdgeInsets.symmetric(
-                                        horizontal: 20.0, vertical: 25.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Container(
-                                        child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10, left: 10, right: 10),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text(
-                                                "Pilih Negara",
-                                                style: TextStyle(
-                                                    fontSize: 24,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontFamily: "Open Sans"),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context).pop();
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => Dialog(
+                                  insetPadding: EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 25.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                      child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10, left: 10, right: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              "Pilih Negara",
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: "Open Sans"),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).pop();
 
-                                                  myController.text = "";
-                                                },
-                                                child: Icon(
-                                                  Icons.close,
-                                                  size: 26,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                                myController.text = "";
+                                              },
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 26,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          margin: EdgeInsets.all(5),
-                                          child: TextField(
-                                            controller: myController,
-                                            onChanged: (value) {
-                                              _filteringCountry(value);
-                                            },
-                                            // onChanged: (item) {
-                                            //   _filteringCountry();
-                                            // },
-                                            decoration: InputDecoration(
-                                                // border: InputBorder.none,
-                                                hintText: 'Cari'),
-                                          ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        margin: EdgeInsets.all(5),
+                                        child: TextField(
+                                          controller: myController,
+                                          onChanged: (value) {
+                                            _filteringCountry(value);
+                                          },
+                                          // onChanged: (item) {
+                                          //   _filteringCountry();
+                                          // },
+                                          decoration: InputDecoration(
+                                              // border: InputBorder.none,
+                                              hintText: 'Cari'),
                                         ),
-                                        Container(child: getData())
-                                      ],
-                                    )),
-                                    elevation: 0.0,
-                                  ));
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                _selectedCountry.country != null
-                                    ? _selectedCountry.country
-                                    : "Negara",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Open Sans"),
-                              ),
-                              flex: 5,
+                                      ),
+                                      Container(child: getData())
+                                    ],
+                                  )),
+                                  elevation: 0.0,
+                                ));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              _selectedCountry.country != null
+                                  ? _selectedCountry.country
+                                  : "Negara",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Open Sans"),
                             ),
-                            Expanded(
-                              child:
-                                  Icon(Icons.arrow_drop_down_circle, size: 32),
-                              flex: 1,
-                            )
-                          ],
-                        )),
+                            flex: 5,
+                          ),
+                          Expanded(
+                            child: Icon(Icons.arrow_drop_down_circle, size: 32),
+                            flex: 1,
+                          )
+                        ],
+                      ),
+                    ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -680,12 +684,14 @@ class _DashboardState extends State<Dashboard> {
                                           height: 20,
                                           color: Colors.blueAccent,
                                         ),
-                                        Text("Jumlah Kasus",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.blueAccent,
-                                                fontFamily: "Roboto"))
+                                        Flexible(
+                                          child: Text("Jumlah Kasus",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.blueAccent,
+                                                  fontFamily: "Roboto")),
+                                        )
                                       ],
                                     ),
                                     Row(
@@ -696,12 +702,14 @@ class _DashboardState extends State<Dashboard> {
                                           height: 20,
                                           color: Colors.green,
                                         ),
-                                        Text("Jumlah Sembuh",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.green,
-                                                fontFamily: "Roboto"))
+                                        Flexible(
+                                          child: Text("Jumlah Sembuh",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.green,
+                                                  fontFamily: "Roboto")),
+                                        )
                                       ],
                                     ),
                                     Row(
@@ -712,12 +720,14 @@ class _DashboardState extends State<Dashboard> {
                                           height: 20,
                                           color: Colors.redAccent,
                                         ),
-                                        Text("Jumlah Kematian",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.redAccent,
-                                                fontFamily: "Roboto"))
+                                        Flexible(
+                                          child: Text("Jumlah Kematian",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.redAccent,
+                                                  fontFamily: "Roboto")),
+                                        )
                                       ],
                                     )
                                   ],
