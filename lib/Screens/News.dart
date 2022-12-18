@@ -23,7 +23,7 @@ class _NewsState extends State<News> {
   Future getNews() async {
     // _loading = true;
     String url =
-        "http://newsapi.org/v2/top-headlines?country=id&category=health&apiKey=2ec972076e064d51876580dcc22bf8f1";
+        "https://newsapi.org/v2/top-headlines?country=id&category=health&apiKey=4ea26c33559f4627ab59615771268949";
     http.Response res = await http.get(url);
     final resBody = json.decode(res.body);
     // print(resBody[0].toString());
@@ -87,6 +87,10 @@ class _NewsState extends State<News> {
                       judul: _newsData[index].title,
                       deskripsi: _newsData[index].description,
                     ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black.withOpacity(0),
+                    elevation: 0,
                   ),
                 ),
                 itemCount: _newsData.length,

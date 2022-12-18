@@ -1,13 +1,18 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'dart:async';
 
 class NewsCard extends StatefulWidget {
   final String imageNews, date, judul, deskripsi;
   int index;
 
-  NewsCard({Key key,  this.imageNews,  this.date,  this.judul,  this.deskripsi, this.index}) : super(key: key);
+  NewsCard(
+      {Key key,
+      this.imageNews,
+      this.date,
+      this.judul,
+      this.deskripsi,
+      this.index})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _StateNewsCard();
@@ -29,7 +34,8 @@ class _StateNewsCard extends State<NewsCard> {
               height: double.infinity,
               width: double.infinity,
               fit: BoxFit.cover,
-              image: NetworkImage(widget.imageNews),
+              image: NetworkImage(widget.imageNews ??
+                  "https://via.placeholder.com/150/5271FF/FFFFFF/?text=newsapi.org"),
             ),
           ),
           Container(
@@ -55,7 +61,7 @@ class _StateNewsCard extends State<NewsCard> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Icon(Icons.access_time, size: 20.0),
-                      Text(" " + widget.date)
+                      Text("${widget.date}" ?? "News Api Org")
                     ],
                   ),
                 ),
@@ -65,7 +71,7 @@ class _StateNewsCard extends State<NewsCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(widget.judul,
+                      Text(widget.judul ?? "News Api Org",
                           style: TextStyle(
                             fontFamily: "Open Sans",
                             fontSize: 16,
@@ -73,7 +79,7 @@ class _StateNewsCard extends State<NewsCard> {
                           ),
                           overflow: TextOverflow.ellipsis),
                       Text(
-                        widget.deskripsi,
+                        widget.deskripsi ?? "News Api Org",
                         style: TextStyle(
                           fontFamily: "Open Sans",
                           fontSize: 12,
