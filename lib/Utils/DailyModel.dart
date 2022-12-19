@@ -1,3 +1,4 @@
+// @dart=2.9
 class DailyModel {
   int totalConfirmed;
   int mainlandChina;
@@ -14,21 +15,21 @@ class DailyModel {
   int peopleTested;
   String reportDate;
 
-  DailyModel(
-      {this.totalConfirmed,
-      this.mainlandChina,
-      this.otherLocations,
-      this.deltaConfirmed,
-      this.totalRecovered,
-      this.confirmed,
-      this.deltaConfirmedDetail,
-      this.deaths,
-      this.recovered,
-      this.active,
-      this.deltaRecovered,
-      this.incidentRate,
-      this.peopleTested,
-      this.reportDate});
+  DailyModel({
+       this.totalConfirmed,
+       this.mainlandChina,
+       this.otherLocations,
+       this.deltaConfirmed,
+       this.totalRecovered,
+       this.confirmed,
+       this.deltaConfirmedDetail,
+       this.deaths,
+       this.recovered,
+       this.active,
+       this.deltaRecovered,
+       this.incidentRate,
+       this.peopleTested,
+       this.reportDate});
 
   factory DailyModel.fromJson(Map<String, dynamic> parsedJson) {
     return DailyModel(
@@ -55,7 +56,7 @@ class Confirmed {
   int china;
   int outsideChina;
 
-  Confirmed({this.total, this.china, this.outsideChina});
+  Confirmed({ this.total,  this.china,  this.outsideChina});
 
   factory Confirmed.fromJson(Map<String, dynamic> json) {
     return Confirmed(

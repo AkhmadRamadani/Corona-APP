@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/button.dart';
 import 'package:Corner/Components/text_input.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<LoginControllerPage> {
                   type: "Password",
                   onChangeText: (text) {
                     this._setText("_passwordText", text);
-                  }),
+                  }, textEditingController: myController,),
               ButtonLogin(onPress: _showLog, label: "Sign In"),
               GestureDetector(
                   onTap: () {

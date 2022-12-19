@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/RankingCard.dart';
 import 'package:Corner/Utils/SummaryModel.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,14 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class RankingRecovery extends StatefulWidget {
-  RankingRecovery({Key key, this.ascending}) : super(key: key);
   final bool ascending;
+
+  const RankingRecovery({Key key,  this.ascending}) : super(key: key);
+
+  
   @override
-  RankingRecoveryState createState() => RankingRecoveryState();
+  State<StatefulWidget> createState() => RankingRecoveryState();
+  
 }
 
 class RankingRecoveryState extends State<RankingRecovery>

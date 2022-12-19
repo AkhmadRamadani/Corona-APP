@@ -1,3 +1,4 @@
+// @dart=2.9
 class AppConstants {
   static const Soal_1 = "Apa itu Virus Korona?";
   static const Jawaban_1 =
@@ -48,4 +49,20 @@ class AppConstants {
       "Gejala-gejala COVID-19 yang paling umum adalah demam, batuk kering, dan rasa lelah. Gejala lainnya yang lebih jarang dan mungkin dialami beberapa pasien meliputi rasa nyeri dan sakit, hidung tersumbat, sakit kepala, konjungtivitis, sakit tenggorokan, diare, kehilangan indera rasa atau penciuman, ruam pada kulit, atau perubahan warna jari tangan atau kaki. Gejala-gejala yang dialami biasanya bersifat ringan dan muncul secara bertahap. Beberapa orang menjadi terinfeksi tetapi hanya memiliki gejala ringan.";
   static const PENCEGAHAN_COVID =
       "Mempraktikkan kebersihan tangan dan pernapasan setiap saat sangatlah penting, dan merupakan cara terbaik untuk melindungi orang lain dan diri Anda sendiri. Apabila memungkinkan, jaga jarak Anda dengan orang lain minimal 1 meter terutama jika berada di dekat orang yang batuk atau bersin. Menjaga jarak fisik dengan semua orang adalah upaya terbaik jika Anda berada di daerah di mana COVID-19 menyebar.";
+  static const PERINGATAN_OLAHRAGA =
+      "Gerakan-gerakan berikut ditujukan kepada orang-orang yang tidak dalam keadaan sakit parah atau atau masih dapat menggerakkan badannya dengan leluasa.  Jika anda merasa tidak mampu, lebik baik jangan dilakukan, demi keselamatan anda sendiri.";
+  static const OR_PEMANASAN =
+      "Lakukan geerakan pemanasan selama 5 - 10 menit, lalu istirahat selama 30 -60 detik. Rangkaian gerakan pemanasan bertujuan untuk meregangkan otot dan sendi tubuh agar  tidak kaku dan cedera ketika melakukan gerakan-gerakan utama.";
+  static const OR_JUMPING_JACK =
+      "Gerakan ini dilakukan sebanyak 5-10x, sebanyak 3 set pengulangan, serta istirahat 30 - 60 detik antar set. Gerakan ini bermanfaat untuk melatih paru-paru, jantung dan otot sekaligus. Selain itu gerakan ini juga dapat meningkatkan suhu tubuh dan juga melancarkan aliran darah ke otot.";
+  static const OR_SQUAT =
+      "Gerakan ini dilakukan sebanyak 5-10x, sebanyak 3 set pengulangan, serta istirahat 30 - 60 detik antar set. Gerakan ini bertujuan untuk memperkuat dan melatih fleksibilitas otot terutama bagian paha dan pinggul. ";
+  static const OR_SIT_UP =
+      "Gerakan ini dilakukan sebanyak 5-10x, sebanyak 3 set pengulangan, serta istirahat 30 - 60 detik antar set. Gerakan ini bermanfaat untuk membakar kalori, mengencangkan otot perut, menjaga metabolisme dan memperbaiki postur tubuh.";
+  static const OR_PUSH_UP =
+      "Gerakan ini dilakukan sebanyak 5-10x, sebanyak 3 set pengulangan, serta istirahat 30 - 60 detik antar set. Gerakan ini bermanfaat untuk menambah kekuatan dan massa otot, memelihara kesehatan jantung, dan memperbaiki postur tubuh.";
+  static const OR_MOUNTAIN_CLIMBER =
+      "Gerakan ini dilakukan selama 30-40 detik, sebanyak 3 set pengulangan, serta istirahat 30 - 60 detik antar set. Gerakan ini bermanfaat untuk meningkatkan kebugaran, memperkuat otot area perut, punggung bawah dan panggul, serta melatih ketangkasan dan kelincahan.";
+  static const OR_PLANK =
+      "Gerakan ini dilakukan selama 30-60 detik. Gerakan ini bermanfaat Memperbaiki postur tubuh, meningkatkan fleksibilitas dan juga meningkatkan metabolisme tubuh serta membakar kalori.";
 }

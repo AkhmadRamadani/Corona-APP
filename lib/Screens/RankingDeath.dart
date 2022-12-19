@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:Corner/Components/RankingCard.dart';
 import 'package:Corner/Utils/SummaryModel.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,12 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class RankingDeath extends StatefulWidget {
-  RankingDeath({Key key, this.ascending}) : super(key: key);
   final bool ascending;
+
+  const RankingDeath({Key key,  this.ascending}) : super(key: key);
+
   @override
-  RankingDeathState createState() => RankingDeathState();
+  State<StatefulWidget> createState() => RankingDeathState();
 }
 
 class RankingDeathState extends State<RankingDeath>

@@ -1,3 +1,4 @@
+// @dart=2.9
 // import 'dart:convert';
 
 // SummaryModel summaryFromJson(String str) => SummaryModel.fromJson(json.decode(str));
@@ -18,7 +19,7 @@ class SummaryModel {
   factory SummaryModel.fromJson(Map<String, dynamic> json) => SummaryModel(
         global: Global.fromJson(json["Global"]),
         countries: List<Country>.from(
-            json["Countries"].map((x) => Country.fromJson(x))),
+            json["Countries"]?.map((x) => Country.fromJson(x))),
         date: DateTime.parse(json["Date"]),
       );
 

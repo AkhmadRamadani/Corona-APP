@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -5,10 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailNews extends StatefulWidget {
-  DetailNews({this.url, this.image, this.judul, this.date, this.content});
   final String url, image, judul, date, content;
+
+  const DetailNews({Key key, this.url, this.image, this.judul, this.date, this.content}) : super(key: key);
   @override
-  _DetailNewsState createState() => _DetailNewsState();
+  State<StatefulWidget> createState() => _DetailNewsState();
+  
 }
 
 class _DetailNewsState extends State<DetailNews> {
@@ -24,7 +27,7 @@ class _DetailNewsState extends State<DetailNews> {
           style: TextStyle(color: Colors.white)),
       backgroundColor: Colors.grey[850],
     );
-    _scaffoldKey.currentState.showSnackBar(snackBar);
+    // _scaffoldKey.currentState.showSnackBar(snackBar);
     // Scaffold.of(context).showSnackBar(
     //     SnackBar(content: Text('Alamat LSS telah disalin ke Papan Klip')));
   }
